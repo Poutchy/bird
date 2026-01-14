@@ -45,4 +45,87 @@ def distance_mois(information: int, actuel: list[int] | None) -> float:
 
 
 def find_closer(bird: dict, list_birds: list[Bird]) -> list[Bird]:
-    return list_birds[:2]
+    res: list[float] = [0.0] * len(list_birds)
+
+    for i, real in enumerate(list_birds):
+        for key in bird.keys():
+            match key:
+                case "Taille":
+                    res[i] += distance_list_int_or_int(
+                        float(bird["Taille"]), real["Taille"]
+                    )
+                case "Envergure":
+                    res[i] += distance_list_int_or_int(
+                        float(bird["Envergure"]), real["Envergure"]
+                    )
+                case "Poids":
+                    res[i] += distance_list_int_or_int(
+                        float(bird["Poids"]), real["Poids"]
+                    )
+                case "Couleurs_principales":
+                    res[i] += distance_list_str(
+                        bird["Couleurs_principales"], real["Couleurs_principales"]
+                    )
+                case "Bec":
+                    res[i] += distance_str(bird["Bec"], real["Bec"])
+                case "Couleur_bec":
+                    res[i] += distance_list_str(
+                        bird["Couleur_bec"], real["Couleur_bec"]
+                    )
+                case "Mois_observation":
+                    res[i] += distance_mois(
+                        bird["Mois_observation"], real["Periode_d_abscence"]
+                    )
+                case "Pattes":
+                    res[i] += distance_str(bird["Pattes"], real["Pattes"])
+                case "Couleur_pattes":
+                    res[i] += distance_list_str(
+                        bird["Couleur_pattes"], real["Couleur_pattes"]
+                    )
+                case "Regime_alimentaire":
+                    res[i] += distance_list_str(
+                        bird["Regime_alimentaire"], real["Regime_alimentaire"]
+                    )
+
+    # Trier par distance croissante (plus proche = plus petit score)
+    id_res: list[int] = sorted(range(len(res)), key=lambda i: res[i])[:5]
+    return [list_birds[i] for i in id_res]
+
+
+"""
+def find_closer(bird: dict, list_birds: list[Bird]) -> list[Bird]:
+    res: list[float] = [0.0] * len(list_birds)
+    nb_modif = len(bird.keys())
+    for i, real in enumerate(list_birds):
+        for key in bird.keys():
+            match key:
+                case "Taille":
+                    res[i] += distance_list_int_or_int(
+                        float(bird["Taille"]), real["Taille"]
+                    )
+                case "Envergure":
+                    res[i] += distance_list_int_or_int(
+                        float(bird["Envergure"]), real["Envergure"]
+                    )
+                case "Poids":
+                    res[i] += distance_list_int_or_int(
+                        float(bird["Poids"]), real["Poids"]
+                    )
+                case "Couleurs_principales":
+                    res[i] += distance_str(
+                        bird["Couleurs_principales"], real["Couleurs_principales"]
+                    )
+                case "Couleur_bec":
+                    res[i] += distance_str(bird["Couleur_bec"], real["Couleur_bec"])
+                case "Mois_observation":
+                    res[i] += distance_mois(
+                        bird["Mois_observation"], real["Periode_d_abscence"]
+                    )
+                case "Couleur_pattes":
+                    res[i] += distance_str(
+                        bird["Couleur_pattes"], real["Couleur_pattes"]
+                    )
+
+    id_res: list[int] = sorted(range(len(res)), key=lambda i: res[i], reverse=True)[:5]
+    return [list_birds[i] for i in id_res]
+"""

@@ -1,7 +1,9 @@
-from flask import Blueprint, abort, redirect, render_template, request, session, url_for
+from flask import (Blueprint, abort, redirect, render_template, request,
+                   session, url_for)
 from jinja2 import TemplateNotFound
 
 from src import all_birds
+from src.data import normalize_form_data
 from src.distance import find_closer
 
 router = Blueprint("simple_page", __name__)
@@ -19,7 +21,7 @@ def show(page):
 
 @router.route("/submit", methods=["POST"])
 def submit():
-    data = request.form.to_dict(flat=False)
+    data = normalize_form_data(request.form.to_dict(flat=False))
     print(f"{data=}")
     res = find_closer(data, all_birds)
     print(f"{res=}")

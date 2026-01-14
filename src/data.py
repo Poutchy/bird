@@ -57,6 +57,26 @@ def create_list_birds(filename: str) -> list[Bird]:
     return bird_dict
 
 
+def normalize_form_data(form_data: dict) -> dict:
+    normalized = {}
+    for key, value in form_data.items():
+        if isinstance(value, list):
+            # Pour les champs multi-choix, on garde la liste
+            if key in [
+                "Couleurs_principales",
+                "Couleur_bec",
+                "Couleur_pattes",
+                "Regime_alimentaire",
+            ]:
+                normalized[key] = value
+            # Pour les champs simples (texte, radio, select), on prend le premier élément
+            else:
+                normalized[key] = value[0] if value else None
+        else:
+            normalized[key] = value
+    return normalized
+
+
 if __name__ == "__main__":
     temp_bird_dict: list[Bird] = create_list_birds("./src/oiseaux_utf8.csv")
     for bird in temp_bird_dict:
