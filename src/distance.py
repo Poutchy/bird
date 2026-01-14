@@ -45,4 +45,4 @@ def distance_mois(information: int, actuel: list[int] | None) -> float:
 
 
 def find_closer(bird: dict, list_birds: list[Bird]) -> list[Bird]:
-    return []
+    return list_birds[:2]
