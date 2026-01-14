@@ -1,187 +1,380 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Poc</title>
+  <title>Identification d'Oiseaux</title>
   <link href="/static/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-  <h1>Formulaire d'informations sur les oiseaux</h1>
-  <form action="/submit" method="post">
-    <label for="taille">Taille :</label>
-    <input type="text" id="taille" name="Taille" placeholder="Ex: 10 cm" required><br>
+  <div class="container">
+    <h1>🦅 Identification d'Oiseaux</h1>
+    <p class="subtitle">Renseignez les caractéristiques de l'oiseau observé</p>
 
-    <label for="envergure">Envergure :</label>
-    <input type="text" id="envergure" name="Envergure" placeholder="Ex: 40 cm" required><br>
+    <form action="/submit" method="post">
+      <div class="two-column-layout">
+        <div class="form-section">
+          <h2 class="section-title">Dimensions</h2>
+          
+          <div class="input-group">
+            <label for="taille">Taille</label>
+            <input type="text" id="taille" name="Taille" placeholder="Ex: 10 cm" required>
+          </div>
 
-    <label for="poids">Poids :</label>
-    <input type="text" id="poids" name="Poids" placeholder="Ex: 0.5 kg" required><br>
+          <div class="input-group">
+            <label for="envergure">Envergure</label>
+            <input type="text" id="envergure" name="Envergure" placeholder="Ex: 40 cm" required>
+          </div>
 
-    <label for="couleurs">Couleurs principales :</label><br>
-    <input type="checkbox" id="couleur_brun" name="Couleurs_principales" value="Brun">
-    <label for="couleur_brun"><img src="/static/plume_brun.png" alt="Brun" style="width:20px; height:20px;">
-      Brun</label><br>
-    <input type="checkbox" id="couleur_gris" name="Couleurs_principales" value="Gris">
-    <label for="couleur_gris"><img src="/static/plume_gris.png" alt="Gris" style="width:20px; height:20px;">
-      Gris</label><br>
-    <input type="checkbox" id="couleur_marron" name="Couleurs_principales" value="Marron">
-    <label for="couleur_marron"><img src="/static/plume_marron.png" alt="Marron" style="width:20px; height:20px;">
-      Marron</label><br>
-    <input type="checkbox" id="couleur_beige" name="Couleurs_principales" value="Beige">
-    <label for="couleur_beige"><img src="/static/plume_beige.png" alt="Beige" style="width:20px; height:20px;">
-      Beige</label><br>
-    <input type="checkbox" id="couleur_Roux" name="Couleurs_principales" value="Roux">
-    <label for="couleur_Roux"><img src="/static/plume_roux.png" alt="Roux" style="width:20px; height:20px;">
-      Roux</label><br>
-    <input type="checkbox" id="couleur_rouge" name="Couleurs_principales" value="Rouge">
-    <label for="couleur_rouge"><img src="/static/plume_rouge.png" alt="Rouge" style="width:20px; height:20px;">
-      Rouge</label><br>
-    <input type="checkbox" id="couleur_bleu" name="Couleurs_principales" value="Bleu">
-    <label for="couleur_bleu"><img src="/static/plume_bleu.png" alt="Bleu" style="width:20px; height:20px;">
-      Bleu</label><br>
-    <input type="checkbox" id="couleur_vert" name="Couleurs_principales" value="Vert">
-    <label for="couleur_vert"><img src="/static/plume_vert.png" alt="Vert" style="width:20px; height:20px;">
-      Vert</label><br>
-    <input type="checkbox" id="couleur_jaune" name="Couleurs_principales" value="Jaune">
-    <label for="couleur_jaune"><img src="/static/plume_jaune.png" alt="Jaune" style="width:20px; height:20px;">
-      Jaune</label><br>
-    <input type="checkbox" id="couleur_noir" name="Couleurs_principales" value="Noir">
-    <label for="couleur_noir"><img src="/static/plume_noir.png" alt="Noir" style="width:20px; height:20px;">
-      Noir</label><br>
-    <input type="checkbox" id="couleur_blanc" name="Couleurs_principales" value="Blanc">
-    <label for="couleur_blanc"><img src="/static/plume_blanc.png" alt="Blanc" style="width:20px; height:20px;">
-      Blanc</label><br>
+          <div class="input-group">
+            <label for="poids">Poids</label>
+            <input type="text" id="poids" name="Poids" placeholder="Ex: 0.5 kg" required>
+          </div>
+        </div>
 
-    <label for="bec">Bec :</label><br>
-    <input type="radio" id="bec_large" name="Bec" value="Large avec culmen prononcé">
-    <label for="bec_large"><img src="/static/large_avec_culmen_prononce.png" alt="Large avec culmen prononcé"
-        style="height:40px;">Large avec culmen prononcé</label><br>
-    <input type="radio" id="bec_crochu" name="Bec" value="Crochu">
-    <label for="bec_crochu"><img src="/static/crochu.png" alt="Crochu" style="height:40px;">Crochu</label><br>
-    <input type="radio" id="bec_court" name="Bec" value="Court à grande ouverture">
-    <label for="bec_court"><img src="/static/court_a_grande_ouverture.png" alt="Court à grande ouverture"
-        style="height:40px;">Court à grande ouverture</label><br>
-    <input type="radio" id="bec_fin" name="Bec" value="Fin">
-    <label for="bec_fin"><img src="/static/fin.png" alt="Fin" style="height:40px;">Fin</label><br>
-    <input type="radio" id="bec_aplati" name="Bec" value="Aplati">
-    <label for="bec_aplati"><img src="/static/aplati.png" alt="Aplati" style="height:40px;">Aplati</label><br>
-    <input type="radio" id="bec_conique" name="Bec" value="Conique">
-    <label for="bec_conique"><img src="/static/conique.png" alt="Conique" style="height:40px;">Conique</label><br>
-    <input type="radio" id="bec_long_recourbe" name="Bec" value="Long et recourbe">
-    <label for="bec_long_recourbe"><img src="/static/long_et_recourbé.png" alt="Long et recourbé"
-        style="height:40px;">Long et recourbé</label><br>
-    <input type="radio" id="bec_long_retrousse" name="Bec" value="Long et retrousse">
-    <label for="bec_long_retrousse"><img src="/static/long_et_retroussé.png" alt="Long en épée"
-        style="height:40px;">Long et retroussé</label><br>
-    <input type="radio" id="bec_long_en_epee" name="Bec" value="Long en épée">
-    <label for="bec_long_en_epee"><img src="/static/long_en_epee.png" alt="Long en épée" style="height:40px;">Long en
-      épée</label><br>
-    <input type="radio" id="bec_coude" name="Bec" value="Coudé">
-    <label for="bec_coude"><img src="/static/coude.png" alt="Coudé" style="height:40px;">Coudé</label><br>
-    <input type="radio" id="bec_croise" name="Bec" value="Croisé">
-    <label for="bec_croise"><img src="/static/croise.png" alt="Croisé" style="height:40px;">Croisé</label><br>
+        <div class="form-section">
+          <h2 class="section-title">Plumage</h2>
+          <label>Couleurs principales</label>
+          <div class="checkbox-grid">
+            <div class="option-item">
+              <input type="checkbox" id="couleur_brun" name="Couleurs_principales" value="Brun">
+              <label for="couleur_brun" class="option-label">
+                <img src="/static/plume_brun.png" alt="Brun">
+                <span>Brun</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_gris" name="Couleurs_principales" value="Gris">
+              <label for="couleur_gris" class="option-label">
+                <img src="/static/plume_gris.png" alt="Gris">
+                <span>Gris</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_marron" name="Couleurs_principales" value="Marron">
+              <label for="couleur_marron" class="option-label">
+                <img src="/static/plume_marron.png" alt="Marron">
+                <span>Marron</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_beige" name="Couleurs_principales" value="Beige">
+              <label for="couleur_beige" class="option-label">
+                <img src="/static/plume_beige.png" alt="Beige">
+                <span>Beige</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_Roux" name="Couleurs_principales" value="Roux">
+              <label for="couleur_Roux" class="option-label">
+                <img src="/static/plume_roux.png" alt="Roux">
+                <span>Roux</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_rouge" name="Couleurs_principales" value="Rouge">
+              <label for="couleur_rouge" class="option-label">
+                <img src="/static/plume_rouge.png" alt="Rouge">
+                <span>Rouge</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_bleu" name="Couleurs_principales" value="Bleu">
+              <label for="couleur_bleu" class="option-label">
+                <img src="/static/plume_bleu.png" alt="Bleu">
+                <span>Bleu</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_vert" name="Couleurs_principales" value="Vert">
+              <label for="couleur_vert" class="option-label">
+                <img src="/static/plume_vert.png" alt="Vert">
+                <span>Vert</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_jaune" name="Couleurs_principales" value="Jaune">
+              <label for="couleur_jaune" class="option-label">
+                <img src="/static/plume_jaune.png" alt="Jaune">
+                <span>Jaune</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_noir" name="Couleurs_principales" value="Noir">
+              <label for="couleur_noir" class="option-label">
+                <img src="/static/plume_noir.png" alt="Noir">
+                <span>Noir</span>
+              </label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_blanc" name="Couleurs_principales" value="Blanc">
+              <label for="couleur_blanc" class="option-label">
+                <img src="/static/plume_blanc.png" alt="Blanc">
+                <span>Blanc</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <label for="couleur_bec">Couleur du bec :</label><br>
-    <input type="checkbox" id="couleur_bec_noir" name="Couleur_bec" value="Noir">
-    <label for="couleur_bec_noir"><img src="/static/noir.png" alt="Noir"
-        style="width:20px; height:20px;">Noir</label><br>
-    <input type="checkbox" id="couleur_bec_jaune" name="Couleur_bec" value="Jaune">
-    <label for="couleur_bec_jaune"><img src="/static/jaune.png" alt="Jaune"
-        style="width:20px; height:20px;">Jaune</label><br>
-    <input type="checkbox" id="couleur_bec_rouge" name="Couleur_bec" value="Rouge">
-    <label for="couleur_bec_rouge"><img src="/static/rouge.png" alt="Rouge"
-        style="width:20px; height:20px;">Rouge</label><br>
-    <input type="checkbox" id="couleur_bec_blanc" name="Couleur_bec" value="Blanc">
-    <label for="couleur_bec_blanc"><img src="/static/blanc.png" alt="Blanc"
-        style="width:20px; height:20px;">Blanc</label><br>
-    <input type="checkbox" id="couleur_bec_brun" name="Couleur_bec" value="Brun">
-    <label for="couleur_bec_brun"><img src="/static/brun.png" alt="Brun"
-        style="width:20px; height:20px;">Brun</label><br>
-    <input type="checkbox" id="couleur_bec_gris" name="Couleur_bec" value="Gris">
-    <label for="couleur_bec_gris"><img src="/static/gris.png" alt="Gris"
-        style="width:20px; height:20px;">Gris</label><br>
+      <div class="form-section">
+        <h2 class="section-title">Bec</h2>
+        <label>Type de bec</label>
+        <div class="radio-grid beak-options">
+          <div class="option-item">
+            <input type="radio" id="bec_large" name="Bec" value="Large avec culmen prononcé">
+            <label for="bec_large" class="option-label">
+              <img src="/static/large_avec_culmen_prononce.png" alt="Large avec culmen prononcé">
+              <span>Large culmen</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_crochu" name="Bec" value="Crochu">
+            <label for="bec_crochu" class="option-label">
+              <img src="/static/crochu.png" alt="Crochu">
+              <span>Crochu</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_court" name="Bec" value="Court à grande ouverture">
+            <label for="bec_court" class="option-label">
+              <img src="/static/court_a_grande_ouverture.png" alt="Court à grande ouverture">
+              <span>Court ouverture</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_fin" name="Bec" value="Fin">
+            <label for="bec_fin" class="option-label">
+              <img src="/static/fin.png" alt="Fin">
+              <span>Fin</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_aplati" name="Bec" value="Aplati">
+            <label for="bec_aplati" class="option-label">
+              <img src="/static/aplati.png" alt="Aplati">
+              <span>Aplati</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_conique" name="Bec" value="Conique">
+            <label for="bec_conique" class="option-label">
+              <img src="/static/conique.png" alt="Conique">
+              <span>Conique</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_long_recourbe" name="Bec" value="Long et recourbe">
+            <label for="bec_long_recourbe" class="option-label">
+              <img src="/static/long_et_recourbé.png" alt="Long et recourbé">
+              <span>Long recourbé</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_long_retrousse" name="Bec" value="Long et retrousse">
+            <label for="bec_long_retrousse" class="option-label">
+              <img src="/static/long_et_retroussé.png" alt="Long et retroussé">
+              <span>Long retroussé</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_long_en_epee" name="Bec" value="Long en épée">
+            <label for="bec_long_en_epee" class="option-label">
+              <img src="/static/long_en_epee.png" alt="Long en épée">
+              <span>Long épée</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_coude" name="Bec" value="Coudé">
+            <label for="bec_coude" class="option-label">
+              <img src="/static/coude.png" alt="Coudé">
+              <span>Coudé</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="bec_croise" name="Bec" value="Croisé">
+            <label for="bec_croise" class="option-label">
+              <img src="/static/croise.png" alt="Croisé">
+              <span>Croisé</span>
+            </label>
+          </div>
+        </div>
 
-    <label for="mois_observation">Mois d'observation :</label><br>
-    <select id="mois_observation" name="Mois_observation">
-      <option value="1">Janvier</option>
-      <option value="2">Février</option>
-      <option value="3">Mars</option>
-      <option value="4">Avril</option>
-      <option value="5">Mai</option>
-      <option value="6">Juin</option>
-      <option value="7">Juillet</option>
-      <option value="8">Août</option>
-      <option value="9">Septembre</option>
-      <option value="10">Octobre</option>
-      <option value="11">Novembre</option>
-      <option value="12">Décembre</option>
-    </select><br>
+        <label style="margin-top: 25px;">Couleur du bec</label>
+        <div class="checkbox-grid">
+          <div class="option-item">
+            <input type="checkbox" id="couleur_bec_noir" name="Couleur_bec" value="Noir">
+            <label for="couleur_bec_noir" class="option-label">
+              <img src="/static/noir.png" alt="Noir">
+              <span>Noir</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="checkbox" id="couleur_bec_jaune" name="Couleur_bec" value="Jaune">
+            <label for="couleur_bec_jaune" class="option-label">
+              <img src="/static/jaune.png" alt="Jaune">
+              <span>Jaune</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="checkbox" id="couleur_bec_rouge" name="Couleur_bec" value="Rouge">
+            <label for="couleur_bec_rouge" class="option-label">
+              <img src="/static/rouge.png" alt="Rouge">
+              <span>Rouge</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="checkbox" id="couleur_bec_blanc" name="Couleur_bec" value="Blanc">
+            <label for="couleur_bec_blanc" class="option-label">
+              <img src="/static/blanc.png" alt="Blanc">
+              <span>Blanc</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="checkbox" id="couleur_bec_brun" name="Couleur_bec" value="Brun">
+            <label for="couleur_bec_brun" class="option-label">
+              <img src="/static/brun.png" alt="Brun">
+              <span>Brun</span>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="checkbox" id="couleur_bec_gris" name="Couleur_bec" value="Gris">
+            <label for="couleur_bec_gris" class="option-label">
+              <img src="/static/gris.png" alt="Gris">
+              <span>Gris</span>
+            </label>
+          </div>
+        </div>
+      </div>
 
-    <label for="pattes">Pattes :</label><br>
-    <input type="radio" id="pattes_palmé" name="Pattes" value="Palmé">
-    <label for="pattes_palmé">Palmé</label><br>
-    <input type="radio" id="pattes_serres" name="Pattes" value="Serres">
-    <label for="pattes_serres">Serres</label><br>
-    <input type="radio" id="pattes_autre" name="Pattes" value="Autre">
-    <label for="pattes_autre">Autre</label><br>
+      <div class="two-column-layout">
+        <div class="form-section">
+          <h2 class="section-title">Pattes</h2>
+          <label>Type de pattes</label>
+          <div class="radio-grid">
+            <div class="option-item">
+              <input type="radio" id="pattes_palmé" name="Pattes" value="Palmé">
+              <label for="pattes_palmé" class="option-label">Palmé</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" id="pattes_serres" name="Pattes" value="Serres">
+              <label for="pattes_serres" class="option-label">Serres</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" id="pattes_autre" name="Pattes" value="Autre">
+              <label for="pattes_autre" class="option-label">Autre</label>
+            </div>
+          </div>
 
-    <label for="couleur_pattes">Couleur des pattes :</label><br>
-    <input type="checkbox" id="couleur_pattes_noir" name="Couleur_pattes" value="Noir">
-    <label for="couleur_pattes_noir"><img src="/static/patte_noir.png" alt="Noir"
-        style="width:20px; height:20px;">Noir</label><br>
-    <input type="checkbox" id="couleur_pattes_jaune" name="Couleur_pattes" value="Jaune">
-    <label for="couleur_pattes_jaune"><img src="/static/patte_jaune.png" alt="Jaune"
-        style="width:20px; height:20px;">Jaune</label><br>
-    <input type="checkbox" id="couleur_pattes_rouge" name="Couleur_pattes" value="Rouge">
-    <label for="couleur_pattes_rouge"><img src="/static/patte_rouge.png" alt="Rouge"
-        style="width:20px; height:20px;">Rouge</label><br>
-    <input type="checkbox" id="couleur_pattes_orange" name="Couleur_pattes" value="Orange">
-    <label for="couleur_pattes_orange"><img src="/static/patte_orange.png" alt="Orange"
-        style="width:20px; height:20px;">Orange</label><br>
-    <input type="checkbox" id="couleur_pattes_gris" name="Couleur_pattes" value="Gris">
-    <label for="couleur_pattes_gris"><img src="/static/patte_gris.png" alt="Gris"
-        style="width:20px; height:20px;">Gris</label><br>
-    <input type="checkbox" id="couleur_pattes_brune" name="Couleur_pattes" value="Brun">
-    <label for="couleur_pattes_brune"><img src="/static/patte_marron.png" alt="Brun"
-        style="width:20px; height:20px;">Brun</label><br>
+          <label style="margin-top: 25px;">Couleur des pattes</label>
+          <div class="checkbox-grid">
+            <div class="option-item">
+              <input type="checkbox" id="couleur_pattes_noir" name="Couleur_pattes" value="Noir">
+              <label for="couleur_pattes_noir" class="option-label">Noir</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_pattes_jaune" name="Couleur_pattes" value="Jaune">
+              <label for="couleur_pattes_jaune" class="option-label">Jaune</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_pattes_rouge" name="Couleur_pattes" value="Rouge">
+              <label for="couleur_pattes_rouge" class="option-label">Rouge</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_pattes_orange" name="Couleur_pattes" value="Orange">
+              <label for="couleur_pattes_orange" class="option-label">Orange</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_pattes_gris" name="Couleur_pattes" value="Gris">
+              <label for="couleur_pattes_gris" class="option-label">Gris</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="couleur_pattes_brune" name="Couleur_pattes" value="Brun">
+              <label for="couleur_pattes_brune" class="option-label">Brun</label>
+            </div>
+          </div>
+        </div>
 
-    <label for="regime">Régime alimentaire :</label><br>
-    <input type="checkbox" id="regime_omnivore" name="Regime_alimentaire" value="Omnivore">
-    <label for="regime_omnivore">Omnivore</label><br>
-    <input type="checkbox" id="regime_insectivore" name="Regime_alimentaire" value="Insectivore">
-    <label for="regime_insectivore">Insectivore</label><br>
-    <input type="checkbox" id="regime_granivore" name="Regime_alimentaire" value="Granivore">
-    <label for="regime_granivore">Granivore</label><br>
-    <input type="checkbox" id="regime_carnivore" name="Regime_alimentaire" value="Carnivore">
-    <label for="regime_carnivore">Carnivore</label><br>
-    <input type="checkbox" id="regime_piscivore" name="Regime_alimentaire" value="Piscivore">
-    <label for="regime_piscivore">Piscivore</label><br>
-    <input type="checkbox" id="regime_crustacivore" name="Regime_alimentaire" value="Crustacivore">
-    <label for="regime_crustacivore">Crustacivore</label><br>
-    <input type="checkbox" id="regime_herbivore" name="Regime_alimentaire" value="Herbivore">
-    <label for="regime_herbivore">Herbivore</label><br>
-    <input type="checkbox" id="regime_charognard" name="Regime_alimentaire" value="Charognard">
-    <label for="regime_charognard">Charognard</label><br>
+        <div>
+          <div class="form-section">
+            <h2 class="section-title">Observation</h2>
+            <div class="input-group">
+              <label for="mois_observation">Mois d'observation</label>
+              <select id="mois_observation" name="Mois_observation">
+                <option value="1">Janvier</option>
+                <option value="2">Février</option>
+                <option value="3">Mars</option>
+                <option value="4">Avril</option>
+                <option value="5">Mai</option>
+                <option value="6">Juin</option>
+                <option value="7">Juillet</option>
+                <option value="8">Août</option>
+                <option value="9">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Décembre</option>
+              </select>
+            </div>
+          </div>
 
-    <button type="submit">Envoyer</button>
-  </form>
+          <div class="form-section">
+            <h2 class="section-title">Régime alimentaire</h2>
+            <div class="checkbox-grid">
+              <div class="option-item">
+                <input type="checkbox" id="regime_omnivore" name="Regime_alimentaire" value="Omnivore">
+                <label for="regime_omnivore" class="option-label">Omnivore</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="regime_insectivore" name="Regime_alimentaire" value="Insectivore">
+                <label for="regime_insectivore" class="option-label">Insectivore</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="regime_granivore" name="Regime_alimentaire" value="Granivore">
+                <label for="regime_granivore" class="option-label">Granivore</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="regime_carnivore" name="Regime_alimentaire" value="Carnivore">
+                <label for="regime_carnivore" class="option-label">Carnivore</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="regime_piscivore" name="Regime_alimentaire" value="Piscivore">
+                <label for="regime_piscivore" class="option-label">Piscivore</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="regime_crustacivore" name="Regime_alimentaire" value="Crustacivore">
+                <label for="regime_crustacivore" class="option-label">Crustacivore</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="regime_herbivore" name="Regime_alimentaire" value="Herbivore">
+                <label for="regime_herbivore" class="option-label">Herbivore</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="regime_charognard" name="Regime_alimentaire" value="Charognard">
+                <label for="regime_charognard" class="option-label">Charognard</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-{% if result %}
-<hr>
-<h2>Oiseaux les plus proches</h2>
+      <button type="submit">Identifier l'oiseau</button>
+    </form>
 
-<ul>
-  {% for bird in result %}
-    <li>
-      <strong>{{ bird["Nom"] }}</strong>
-    </li>
-  {% endfor %}
-</ul>
-{% endif %}
-
+    {% if result %}
+    <div class="results">
+      <h2>🎯 Oiseaux correspondants</h2>
+      <ul>
+        {% for bird in result %}
+        <li>
+          <strong>{{ bird["Nom"] }}</strong>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
 </body>
 
 </html>
