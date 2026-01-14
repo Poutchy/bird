@@ -1,22 +1,7 @@
 from csv import DictReader
 from pathlib import Path
-from typing import TypedDict
 
-
-class Bird(TypedDict):
-    Nom: str
-    Nom_latin: str
-    Type: str
-    Taille: tuple[int, int] | int
-    Envergure: tuple[int, int] | int
-    Poids: tuple[float, float] | float
-    Couleurs_principales: list[str]
-    Bec: str
-    Couleur_bec: list[str]
-    Periode_d_abscence: list[int]
-    Pattes: str
-    Couleur_pattes: list[str]
-    Régime_alimentaire: list[str]
+from .model import Bird
 
 
 def parse_int_range(value: str) -> int | tuple[int, int]:
@@ -59,15 +44,20 @@ def normalize_row(row: dict[str, str]) -> Bird:
         "Periode_d_abscence": parse_months(row["Periode d'abscence"]),
         "Pattes": row["Pattes"],
         "Couleur_pattes": parse_list(row["Couleur pattes"]),
-        "Régime_alimentaire": parse_list(row["Régime alimentaire"]),
+        "Regime_alimentaire": parse_list(row["Régime alimentaire"]),
     }
 
 
-temp_bird_dict: list[Bird] = []
+def create_list_birds(filename: str) -> list[Bird]:
+    bird_dict = []
+    with open(Path(filename), encoding="utf_8") as csvfile:
+        birdreader = DictReader(csvfile, delimiter=";")
+        for line in birdreader:
+            bird_dict.append(normalize_row(line))
+    return bird_dict
 
-with open(Path("src/oiseaux_utf8.csv"), encoding="utf_8") as csvfile:
-    birdreader = DictReader(csvfile, delimiter=";")
-    for line in birdreader:
-        temp_bird_dict.append(normalize_row(line))
-for line in temp_bird_dict:
-    print(line)
+
+if __name__ == "__main__":
+    temp_bird_dict: list[Bird] = create_list_birds("./src/oiseaux_utf8.csv")
+    for bird in temp_bird_dict:
+        print(bird)

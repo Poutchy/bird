@@ -1,5 +1,8 @@
-from flask import Blueprint, abort, jsonify, render_template, request
+from flask import Blueprint, abort, redirect, render_template, request, session, url_for
 from jinja2 import TemplateNotFound
+
+from src import all_birds
+from src.distance import find_closer
 
 router = Blueprint("simple_page", __name__)
 
@@ -8,12 +11,19 @@ router = Blueprint("simple_page", __name__)
 @router.route("/<page>")
 def show(page):
     try:
-        return render_template(f"{page}.html")
+        result = session.pop("result", None)
+        return render_template(f"{page}.html", result=result)
     except TemplateNotFound:
         abort(404)
 
-@router.route('/submit', methods=['POST'])
+
+@router.route("/submit", methods=["POST"])
 def submit():
-    data = request.form.to_dict(flat=False)  # Permet de récupérer toutes les valeurs cochées
-    print(data)
-    return jsonify(data)
+    data = request.form.to_dict(flat=False)
+    print(f"{data=}")
+    res = find_closer(data, all_birds)
+    print(f"{res=}")
+
+    session["result"] = res
+
+    return redirect(url_for("simple_page.show"))
