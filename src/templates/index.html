@@ -4,33 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Identification d'Oiseaux</title>
+  <title>Identification d'Oiseaux de France</title>
   <link href="/static/css/style.css" rel="stylesheet">
 </head>
 
 <body>
   <div class="container">
-    <h1>🦅 Identification d'Oiseaux</h1>
-    <p class="subtitle">Renseignez les caractéristiques de l'oiseau observé</p>
+    <div class="header-section">
+      <div class="header-content">
+        <h1>🦅 Identification d'Oiseaux de France</h1>
+        <p class="subtitle">Identifiez les oiseaux grâce à leurs caractéristiques observées</p>
+        <button id="showAllBirdsBtn" class="btn-all-birds">
+          📚 Catalogue complet des oiseaux
+        </button>
+      </div>
+    </div>
 
-    <form action="/submit" method="post">
+    <form id="birdForm" action="/submit" method="post">
       <div class="two-column-layout">
         <div class="form-section">
           <h2 class="section-title">Dimensions</h2>
-          
+
           <div class="input-group">
-            <label for="taille">Taille</label>
-            <input type="text" id="taille" name="Taille" placeholder="Ex: 10 cm" required>
+            <label for="taille">Taille (cm)</label>
+            <input type="text" id="taille" name="Taille" placeholder="Ex: 15" required>
           </div>
 
           <div class="input-group">
-            <label for="envergure">Envergure</label>
-            <input type="text" id="envergure" name="Envergure" placeholder="Ex: 40 cm" required>
+            <label for="envergure">Envergure (cm)</label>
+            <input type="text" id="envergure" name="Envergure" placeholder="Ex: 40" required>
           </div>
 
           <div class="input-group">
-            <label for="poids">Poids</label>
-            <input type="text" id="poids" name="Poids" placeholder="Ex: 0.5 kg" required>
+            <label for="poids">Poids (kg)</label>
+            <input type="text" id="poids" name="Poids" placeholder="Ex: 0.5" required>
           </div>
         </div>
 
@@ -272,27 +279,45 @@
           <div class="checkbox-grid">
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_noir" name="Couleur_pattes" value="Noir">
-              <label for="couleur_pattes_noir" class="option-label">Noir</label>
+              <label for="couleur_pattes_noir" class="option-label">
+                <img src="/static/noir.png" alt="Noit">
+                <span>Noir</span>
+              </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_jaune" name="Couleur_pattes" value="Jaune">
-              <label for="couleur_pattes_jaune" class="option-label">Jaune</label>
+              <label for="couleur_pattes_jaune" class="option-label">
+                <img src="/static/jaune.png" alt="Jaune">
+                <span>Jaune</span>
+              </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_rouge" name="Couleur_pattes" value="Rouge">
-              <label for="couleur_pattes_rouge" class="option-label">Rouge</label>
+              <label for="couleur_pattes_rouge" class="option-label">
+                <img src="/static/rouge.png" alt="Rouge">
+                <span>Rouge</span>
+              </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_orange" name="Couleur_pattes" value="Orange">
-              <label for="couleur_pattes_orange" class="option-label">Orange</label>
+              <label for="couleur_pattes_orange" class="option-label">
+                <img src="/static/orange.png" alt="Orange">
+                <span>Orange</span>
+              </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_gris" name="Couleur_pattes" value="Gris">
-              <label for="couleur_pattes_gris" class="option-label">Gris</label>
+              <label for="couleur_pattes_gris" class="option-label">
+                <img src="/static/gris.png" alt="Gris">
+                <span>Gris</span>
+              </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_brune" name="Couleur_pattes" value="Brun">
-              <label for="couleur_pattes_brune" class="option-label">Brun</label>
+              <label for="couleur_pattes_brune" class="option-label">
+                <img src="/static/brun.png" alt="Brun">
+                <span>Brun</span>
+              </label>
             </div>
           </div>
         </div>
@@ -362,19 +387,190 @@
       <button type="submit">Identifier l'oiseau</button>
     </form>
 
-    {% if result %}
-    <div class="results">
-      <h2>🎯 Oiseaux correspondants</h2>
-      <ul>
-        {% for bird in result %}
-        <li>
-          <strong>{{ bird["Nom"] }}</strong>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
+    <div id="results-container"></div>
   </div>
+
+  <script>
+    document.getElementById('showAllBirdsBtn').addEventListener('click', async function () {
+      try {
+        const response = await fetch('/all-birds');
+        const data = await response.json();
+
+        if (data.success) {
+          displayResults(data.result);
+          setTimeout(() => {
+            document.getElementById('results-container').scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue lors du chargement des oiseaux.');
+      }
+    });
+
+    document.getElementById('birdForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+
+      try {
+        const response = await fetch('/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          displayResults(data.result);
+          setTimeout(() => {
+            document.getElementById('results-container').scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue lors de l\'identification.');
+      }
+    });
+
+    function displayResults(birds) {
+      const container = document.getElementById('results-container');
+
+      let html = `
+        <div class="results">
+          <h2>Oiseaux correspondants</h2>
+          <div class="birds-container">
+      `;
+
+      birds.forEach((bird, index) => {
+        const formatValue = (value) => {
+          if (Array.isArray(value)) {
+            return value.length > 0 ? value[0] + (value.length > 1 ? ` - ${value[1]}` : '') : '-';
+          }
+          return value || '-';
+        };
+
+        const imagePath = `/static/${bird.Nom_latin}.jpg`;
+
+        html += `
+          <div class="bird-card">
+            <div class="bird-header" onclick="toggleBirdDetails('bird-${index}')">
+              <div class="bird-title">
+                <h3>${bird.Nom}</h3>
+                <p class="bird-latin">${bird.Nom_latin}</p>
+              </div>
+              <img src="${imagePath}" alt="${bird.Nom}" class="bird-header-image" onerror="this.style.display='none'">
+              <div class="bird-type">
+                <span class="type-badge">${bird.Type}</span>
+              </div>
+              <span class="expand-icon">▼</span>
+            </div>
+            
+            <div id="bird-${index}" class="bird-details" style="display: none;">
+              <div class="details-content">
+                <div class="details-grid">
+                <div class="detail-row">
+                  <strong>Taille:</strong>
+                  <span>${formatTaille(bird.Taille)} cm</span>
+                </div>
+                
+                <div class="detail-row">
+                  <strong>Envergure:</strong>
+                  <span>${formatTaille(bird.Envergure)} cm</span>
+                </div>
+                
+                <div class="detail-row">
+                  <strong>Poids:</strong>
+                  <span>${formatPoids(bird.Poids)} kg</span>
+                </div>
+                
+                <div class="detail-row">
+                  <strong>Couleurs principales:</strong>
+                  <span class="color-tags">
+                    ${bird.Couleurs_principales.map(c => `<span class="tag">${c}</span>`).join('')}
+                  </span>
+                </div>
+                
+                <div class="detail-row">
+                  <strong>Bec:</strong>
+                  <span>${bird.Bec}</span>
+                </div>
+                
+                <div class="detail-row">
+                  <strong>Couleur du bec:</strong>
+                  <span class="color-tags">
+                    ${bird.Couleur_bec.map(c => `<span class="tag">${c}</span>`).join('')}
+                  </span>
+                </div>
+                
+                <div class="detail-row">
+                  <strong>Pattes:</strong>
+                  <span>${bird.Pattes}</span>
+                </div>
+                
+                <div class="detail-row">
+                  <strong>Couleur des pattes:</strong>
+                  <span class="color-tags">
+                    ${bird.Couleur_pattes.map(c => `<span class="tag">${c}</span>`).join('')}
+                  </span>
+                </div>
+                
+                <div class="detail-row">
+                  <strong>Régime alimentaire:</strong>
+                  <span class="color-tags">
+                    ${bird.Regime_alimentaire.map(r => `<span class="tag">${r}</span>`).join('')}
+                  </span>
+                </div>
+                
+                ${bird.Periode_d_abscence && bird.Periode_d_abscence.length > 0 ? `
+                  <div class="detail-row">
+                    <strong>Période d'absence:</strong>
+                    <span>Mois: ${bird.Periode_d_abscence.join(", ")}</span>
+                  </div>
+                ` : ''}
+                </div>
+                <img src="${imagePath}" alt="${bird.Nom}" class="bird-detail-image" onerror="this.style.display='none'">
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    function formatTaille(value) {
+      if (Array.isArray(value)) {
+        return `${value[0]} - ${value[1]}`;
+      }
+      return value;
+    }
+
+    function formatPoids(value) {
+      if (Array.isArray(value)) {
+        return `${value[0]} - ${value[1]}`;
+      }
+      return value;
+    }
+
+    function toggleBirdDetails(birdId) {
+      const details = document.getElementById(birdId);
+      const card = details.closest('.bird-card');
+
+      if (details.style.display === "none") {
+        details.style.display = "block";
+        card.classList.add('expanded');
+      } else {
+        details.style.display = "none";
+        card.classList.remove('expanded');
+      }
+    }
+  </script>
 </body>
 
 </html>

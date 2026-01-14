@@ -1,5 +1,5 @@
-from flask import (Blueprint, abort, redirect, render_template, request,
-                   session, url_for)
+from flask import (Blueprint, abort, jsonify, render_template, request,
+                   url_for)
 from jinja2 import TemplateNotFound
 
 from src import all_birds
@@ -13,8 +13,7 @@ router = Blueprint("simple_page", __name__)
 @router.route("/<page>")
 def show(page):
     try:
-        result = session.pop("result", None)
-        return render_template(f"{page}.html", result=result)
+        return render_template(f"{page}.html")
     except TemplateNotFound:
         abort(404)
 
@@ -26,6 +25,9 @@ def submit():
     res = find_closer(data, all_birds)
     print(f"{res=}")
 
-    session["result"] = res
+    return jsonify({"success": True, "result": res})
 
-    return redirect(url_for("simple_page.show"))
+
+@router.route("/all-birds", methods=["GET"])
+def get_all_birds():
+    return jsonify({"success": True, "result": all_birds})
