@@ -168,6 +168,20 @@
 
     <button type="submit">Envoyer</button>
   </form>
+
+{% if result %}
+<hr>
+<h2>Oiseaux les plus proches</h2>
+
+<ul>
+  {% for bird in result %}
+    <li>
+      <strong>{{ bird["Nom"] }}</strong>
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
 </body>
 
 </html>
