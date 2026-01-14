@@ -38,13 +38,13 @@ Pie-grièche Méridionale;Lanius collurio;Passereau à bec large;24-25;30-34;0.0
 Pic-vert;Picus viridis;Passereau à bec long;31-33;40-42;0.18-0.22;Blanc/Vert/Rouge;Long;Noir;;Zygodactyle;Brun;Granivore/Insectivore
 Grimpereau des jardins;Certhia brachydactyla;Passereau à bec long; 12-13;18-21;0.008-0.012;Brun/Gris;Long fin arqué;Noir;;Anisodactyle;Brun;Insectivore
 Huppe fasciée;Upupa epops;Passereau à bec long;26-28;42-46;0.055-0.08;Brun/Noir;Long fin;Noir;01/02/11/12;Anisodactyle;Brun;Insectivore
-Guêpier d'Europe;Merops apiaster;Passereau à bec long;27-28;44-49;0.045-0.08;Bleu/Roux;Long pointu courbé;Noir;01/02/03/10/11/12;Anisodactyle;Noir;Hyménoptère
+Guêpier d'Europe;Merops apiaster;Passereau à bec long;27-28;44-49;0.045-0.08;Bleu/Roux;Long pointu courbé;Noir;01/02/03/10/11/12;Anisodactyle;Noir;Insectivore
 Martin-pêcheur d'Europe;Alcedo atthis;Passereau à bec long;16-17;24-26;0.03-0.045;Bleu/Marron;Long;Noir;;Anisodactyle;Rouge;Piscivore/Insectivore
 Engoulement d'Europe;Caprimulgus europaeus;Passereau à bec fin;26-28;54-60;0.065-0.1;Brun/Gris;Fin;Noir;01/02/03/11/12;Anisodactyle;Gris;Insectivore
 Bergeronette printanière;Motacilla flava;Passereau à bec fin;16-17;23-28;0.016-0.017;Jaune/Noir;Fin;Noir;01/02/03/11/12;Anisodactyle;Noir;Insectivore
-Locustelle luscinoïde;Locustella luscinoïdes;Passereau à bec fin;14-15;15-21;0.014-0.018;Brun/Roux;Fin;Noire;01/02/03/10/11/12;Anisodactyle;Brun;Insectivore
-Pouillot véloce;Phylloscopus collybita;Passereau à bec fin;11;18;0.006;Gris/Vert;Fin;Noire;;Anisodactyle;Gris/Brun;Insectivore
-Rouge-queue à front blanc;Phoenicurus phoenicurus;Passereau à bec fin;14;20-24;0.012-0.02;Rouge/Gris/Blanc;Fin;Noire;01/02/11/12;Anisodactyle;Marron;Insectivore
+Locustelle luscinoïde;Locustella luscinoïdes;Passereau à bec fin;14-15;15-21;0.014-0.018;Brun/Roux;Fin;Noir;01/02/03/10/11/12;Anisodactyle;Brun;Insectivore
+Pouillot véloce;Phylloscopus collybita;Passereau à bec fin;11;18;0.006;Gris/Vert;Fin;Noir;;Anisodactyle;Gris/Brun;Insectivore
+Rouge-queue à front blanc;Phoenicurus phoenicurus;Passereau à bec fin;14;20-24;0.012-0.02;Rouge/Gris/Blanc;Fin;Noir;01/02/11/12;Anisodactyle;Marron;Insectivore
 Etourneau unicolore;Sturnus unicolor;Passereau à bec fin;21;37-42;0.085-0.095;Noir;Fin;Jaune;;Anisodactyle;Rose;Insectivore/Granivore
 Mésange chardonière;Parus major;Passereau à bec fin;14;23-26;0.016-0.021;Jaune/Vert/Noir;Fin;Noir;;Anisodactyle;Noir;Insectivore/Granivore
 Moineau domestique;Passer domesticus;Passereau à bec conique;14-15;20-25;0.03-0.04;Roux/Noir/Marron;Conique;Jaune;;Anisodactyle;Brun;Granivore
