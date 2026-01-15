@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Identification d'Oiseaux de France</title>
   <link href="/static/css/style.css" rel="stylesheet">
+  <link rel="icon" href="/static/favicon.png">
 </head>
 
 <body>
@@ -27,17 +28,17 @@
 
           <div class="input-group">
             <label for="taille">Taille (cm)</label>
-            <input type="text" id="taille" name="Taille" placeholder="Ex: 15" required>
+            <input type="text" id="taille" name="Taille" placeholder="Ex: 15">
           </div>
 
           <div class="input-group">
             <label for="envergure">Envergure (cm)</label>
-            <input type="text" id="envergure" name="Envergure" placeholder="Ex: 40" required>
+            <input type="text" id="envergure" name="Envergure" placeholder="Ex: 40">
           </div>
 
           <div class="input-group">
             <label for="poids">Poids (kg)</label>
-            <input type="text" id="poids" name="Poids" placeholder="Ex: 0.5" required>
+            <input type="text" id="poids" name="Poids" placeholder="Ex: 0.5">
           </div>
         </div>
 
@@ -280,42 +281,42 @@
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_noir" name="Couleur_pattes" value="Noir">
               <label for="couleur_pattes_noir" class="option-label">
-                <img src="/static/noir.png" alt="Noit">
+                <img src="/static/patte_noir.png" alt="Noit">
                 <span>Noir</span>
               </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_jaune" name="Couleur_pattes" value="Jaune">
               <label for="couleur_pattes_jaune" class="option-label">
-                <img src="/static/jaune.png" alt="Jaune">
+                <img src="/static/patte_jaune.png" alt="Jaune">
                 <span>Jaune</span>
               </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_rouge" name="Couleur_pattes" value="Rouge">
               <label for="couleur_pattes_rouge" class="option-label">
-                <img src="/static/rouge.png" alt="Rouge">
+                <img src="/static/patte_rouge.png" alt="Rouge">
                 <span>Rouge</span>
               </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_orange" name="Couleur_pattes" value="Orange">
               <label for="couleur_pattes_orange" class="option-label">
-                <img src="/static/orange.png" alt="Orange">
+                <img src="/static/patte_orange.png" alt="Orange">
                 <span>Orange</span>
               </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_gris" name="Couleur_pattes" value="Gris">
               <label for="couleur_pattes_gris" class="option-label">
-                <img src="/static/gris.png" alt="Gris">
+                <img src="/static/patte_gris.png" alt="Gris">
                 <span>Gris</span>
               </label>
             </div>
             <div class="option-item">
               <input type="checkbox" id="couleur_pattes_brune" name="Couleur_pattes" value="Brun">
               <label for="couleur_pattes_brune" class="option-label">
-                <img src="/static/brun.png" alt="Brun">
+                <img src="/static/patte_brun.png" alt="Brun">
                 <span>Brun</span>
               </label>
             </div>
@@ -461,7 +462,7 @@
               </div>
               <img src="${imagePath}" alt="${bird.Nom}" class="bird-header-image" onerror="this.style.display='none'">
               <div class="bird-type">
-                <span class="type-badge">${bird.Type}</span>
+                <span class="type-badge">${bird.Type} (Score: ${bird.score.toFixed(2)})</span>
               </div>
               <span class="expand-icon">▼</span>
             </div>
@@ -525,7 +526,7 @@
                 ${bird.Periode_d_abscence && bird.Periode_d_abscence.length > 0 ? `
                   <div class="detail-row">
                     <strong>Période d'absence:</strong>
-                    <span>Mois: ${bird.Periode_d_abscence.join(", ")}</span>
+                    <span>Mois: ${bird.Periode_d_abscence.map(m => getMoisName(m)).join(", ")}</span>
                   </div>
                 ` : ''}
                 </div>
@@ -569,6 +570,11 @@
         details.style.display = "none";
         card.classList.remove('expanded');
       }
+    }
+
+    function getMoisName(numMois) {
+      const mois = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+      return mois[numMois] || '';
     }
   </script>
 </body>
