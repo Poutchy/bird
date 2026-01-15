@@ -29,4 +29,6 @@ def submit():
 
 @router.route("/all-birds", methods=["GET"])
 def get_all_birds():
+    for bird in all_birds:
+        bird["score"] = 0.0
     return jsonify({"success": True, "result": all_birds})

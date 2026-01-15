@@ -33,9 +33,7 @@ def distance_list_str(information: list[str], actuel: list[str]) -> float:
 
 
 def distance_str(information: str, actuel: list[str] | str) -> float:
-    if isinstance(actuel, list):
-        return 0.0 if information in actuel else 1.0
-    return 0.0 if information == actuel else 1.0
+    return 0.0 if information in actuel else 1.0
 
 
 def distance_mois(information: int, actuel: list[int] | None) -> float:
