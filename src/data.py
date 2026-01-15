@@ -72,7 +72,7 @@ def normalize_form_data(form_data: dict) -> dict:
                 normalized[key] = value
             # Pour les champs simples (texte, radio, select), on prend le premier élément
             else:
-                normalized[key] = value[0] if value else None
+                normalized[key] = value[0] if value != "" and value else None
         else:
             normalized[key] = value
     return normalized
