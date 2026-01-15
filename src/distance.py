@@ -52,14 +52,20 @@ def find_closer(bird: dict, list_birds: list[Bird]) -> list[Bird]:
         for key in bird.keys():
             match key:
                 case "Taille":
+                    if bird["Taille"] == "":
+                        continue
                     res[i] += distance_list_int_or_int(
                         float(bird["Taille"]), real["Taille"]
                     )
                 case "Envergure":
+                    if bird["Envergure"] == "":
+                        continue
                     res[i] += distance_list_int_or_int(
                         float(bird["Envergure"]), real["Envergure"]
                     )
                 case "Poids":
+                    if bird["Poids"] == "":
+                        continue
                     res[i] += distance_list_int_or_int(
                         float(bird["Poids"]), real["Poids"]
                     )
