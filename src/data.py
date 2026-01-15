@@ -45,6 +45,7 @@ def normalize_row(row: dict[str, str]) -> Bird:
         "Pattes": row["Pattes"],
         "Couleur_pattes": parse_list(row["Couleur pattes"]),
         "Regime_alimentaire": parse_list(row["Régime alimentaire"]),
+        "score": 0.0,
     }
 
 

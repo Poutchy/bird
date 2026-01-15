@@ -45,6 +45,7 @@ def distance_mois(information: int, actuel: list[int] | None) -> float:
 
 
 def find_closer(bird: dict, list_birds: list[Bird]) -> list[Bird]:
+    nb_modif = len(bird.keys())
     res: list[float] = [0.0] * len(list_birds)
 
     for i, real in enumerate(list_birds):
@@ -86,6 +87,10 @@ def find_closer(bird: dict, list_birds: list[Bird]) -> list[Bird]:
                     res[i] += distance_list_str(
                         bird["Regime_alimentaire"], real["Regime_alimentaire"]
                     )
+    for e in res:
+        e /= nb_modif
+    for i, e in enumerate(res):
+        list_birds[i]["score"] = e
 
     # Trier par distance croissante (plus proche = plus petit score)
     id_res: list[int] = sorted(range(len(res)), key=lambda i: res[i])[:5]

@@ -1,5 +1,4 @@
-from flask import (Blueprint, abort, jsonify, render_template, request,
-                   url_for)
+from flask import Blueprint, abort, jsonify, render_template, request
 from jinja2 import TemplateNotFound
 
 from src import all_birds

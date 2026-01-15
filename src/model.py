@@ -15,3 +15,4 @@ class Bird(TypedDict):
     Pattes: str
     Couleur_pattes: list[str]
     Regime_alimentaire: list[str]
+    score: float
